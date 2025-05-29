@@ -1,0 +1,716 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gollihur Family Eastern Adventure 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans" id="top">
+    <nav class="fixed top-0 left-0 right-0 bg-blue-600 text-white z-50">
+        <div class="container mx-auto p-4">
+            <h1 class="text-2xl font-bold text-center">Gollihur Family Eastern Adventure 2025</h1>
+            <ul class="flex justify-center space-x-6 mt-2">
+                <li><a href="index.html" class="hover:underline px-2 py-1 text-sm">Home</a></li>
+                <li><a href="reservations.html" class="hover:underline px-2 py-1 text-sm">Reservations</a></li>
+                <li><a href="photos.html" class="hover:underline px-2 py-1 text-sm">Photos</a></li>
+            </ul>
+        </div>
+        <div class="bg-blue-500 p-2 overflow-x-auto">
+            <div class="flex space-x-2 whitespace-nowrap">
+                <a href="#day-20250610" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Tu</span>
+                    <span class="text-lg">10</span>
+                </a>
+                <a href="#day-20250611" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">We</span>
+                    <span class="text-lg">11</span>
+                </a>
+                <a href="#day-20250612" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Th</span>
+                    <span class="text-lg">12</span>
+                </a>
+                <a href="#day-20250613" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Fr</span>
+                    <span class="text-lg">13</span>
+                </a>
+                <a href="#day-20250614" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Sa</span>
+                    <span class="text-lg">14</span>
+                </a>
+                <a href="#day-20250615" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Su</span>
+                    <span class="text-lg">15</span>
+                </a>
+                <a href="#day-20250616" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Mo</span>
+                    <span class="text-lg">16</span>
+                </a>
+                <a href="#day-20250617" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Tu</span>
+                    <span class="text-lg">17</span>
+                </a>
+                <a href="#day-20250618" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">We</span>
+                    <span class="text-lg">18</span>
+                </a>
+                <a href="#day-20250619" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Th</span>
+                    <span class="text-lg">19</span>
+                </a>
+                <a href="#day-20250620" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Fr</span>
+                    <span class="text-lg">20</span>
+                </a>
+                <a href="#day-20250621" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Sa</span>
+                    <span class="text-lg">21</span>
+                </a>
+                <a href="#day-20250622" class="flex flex-col items-center w-16 h-16 bg-gray-200 rounded hover:bg-gray-300">
+                    <span class="text-sm font-bold">Su</span>
+                    <span class="text-lg">22</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-4 max-w-4xl mt-32">
+        <div id="day-20250610" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 10, 2025 - Travel to Boston, MA</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Flight 1: Delta #DL3172, SLC to Denver, 7:57 AM–9:24 AM (1h 30m)</p>
+                <p><a href="https://www.delta.com/flightstatus/search?flightNumber=3172&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL3172/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                <p>Flight 2: Delta #DL499, Denver to Boston, 11:25 AM–5:35 PM (4h 10m)</p>
+                <p><a href="https://www.delta.com/flightstatus/search?flightNumber=499&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL499/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                <div class="relative">
+                    <p>Rental Car: Alamo, Logan Int’l Airport, 15 Transportation Way, East Boston, MA, Conf #1481224049, Costco #C463564111, minivan, $1116.14/$1139.75, due at pickup</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=15%20Transportation%20Way%2C%20East%20Boston%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=15%20Transportation%20Way%2C%20East%20Boston%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Hotel: Staybridge Suites Boston Burlington, 11 Old Concord Rd, Burlington, MA (23 min from Boston), 2-bedroom suite (1 king, 2 doubles), $504, due at hotel</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Arrival: Arrive Boston 5:30 PM</p>
+                <div class="relative">
+                    <p>Louisa May Alcott’s Orchard House: 399 Lexington Rd, Concord, MA (20 min from hotel), $12 & $6.40 family rate</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=399%20Lexington%20Rd%2C%20Concord%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=399%20Lexington%20Rd%2C%20Concord%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://louisamayalcott.org/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="day-20250611" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 11, 2025 - Boston, MA</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Staybridge Suites Boston Burlington: 11 Old Concord Rd, Burlington, MA (23 min from Boston), 2-bedroom suite (1 king, 2 doubles)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Hop on Hop off Trolley: 2-day ticket, $82</p>
+                <div class="relative">
+                    <p>Freedom Trail: $17.85, Walk into History Tour (free, some optional tours have fees), park at Boston Common, take T and yellow bus to Bunker Hill, work backwards, split into two mornings if hot, favorites: USS Constitution, Bunker Hill, Quincy Market, Old North Church</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.thefreedomtrail.org/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Paul Revere's House: $6 - 19 N Square, Boston, MA 02113</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=19%20N%20Square%2C%20Boston%2C%20MA%2002113" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=19%20N%20Square%2C%20Boston%2C%20MA%2002113" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.paulreverehouse.org/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Boston Tea Party Ships & Museum: Cost not specified - 306 Congress St, Boston, MA 02210</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=306%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=306%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.bostonteapartyship.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Boston Children's Museum: $26 - 308 Congress St, Boston, MA 02210</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=308%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=308%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://bostonchildrensmuseum.org/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>USS Constitution Museum: $15 - Building 22, Charlestown Navy Yard, Charlestown, MA 02129</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Building%2022%2C%20Charlestown%20Navy%20Yard%2C%20Charlestown%2C%20MA%2002129" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=Building%2022%2C%20Charlestown%20Navy%20Yard%2C%20Charlestown%2C%20MA%2002129" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://ussconstitutionmuseum.org/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Cape Cod Canal Cruise: $21 - 184 Onset Ave, Onset, MA 02558</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=184%20Onset%20Ave%2C%20Onset%2C%20MA%2002558" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=184%20Onset%20Ave%2C%20Onset%2C%20MA%2002558" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://hylinecruises.com/cape-cod-canal-cruises/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Harvard: Massachusetts Hall, Cambridge, MA 02138 (Free)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Massachusetts%20Hall%2C%20Cambridge%2C%20MA%2002138" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=Massachusetts%20Hall%2C%20Cambridge%2C%20MA%2002138" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.harvard.edu/visit/tours/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>MIT: 77 Massachusetts Ave, Cambridge, MA 02139 (MIT tour $22)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=77%20Massachusetts%20Ave%2C%20Cambridge%2C%20MA%2002139" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=77%20Massachusetts%20Ave%2C%20Cambridge%2C%20MA%2002139" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://web.mit.edu/visitmit/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Piers Park: Near airport, free, overlook boats and downtown Boston - 95 Marginal St, Boston, MA 02128</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=95%20Marginal%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=95%20Marginal%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://en.wikipedia.org/wiki/Piers_Park" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Mayflower II: Plymouth (1h away), might not visit - Water St, Plymouth, MA 02360</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Water%20St%2C%20Plymouth%2C%20MA%2002360" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=Water%20St%2C%20Plymouth%2C%20MA%2002360" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://plimoth.org/plan-your-visit/explore-our-sites/mayflower-ii" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Plymouth Rock: No cost specified - 79 Water St, Plymouth, MA 02360</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=79%20Water%20St%2C%20Plymouth%2C%20MA%2002360" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=79%20Water%20St%2C%20Plymouth%2C%20MA%2002360" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://seeplymouth.com/listing/plymouth-rock/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Lexington Green National Historic Site: No cost specified - 1625 Massachusetts Ave, Lexington, MA 02421</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=1625%20Massachusetts%20Ave%2C%20Lexington%2C%20MA%2002421" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=1625%20Massachusetts%20Ave%2C%20Lexington%2C%20MA%2002421" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://lexingtonma.gov/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Minute Man Visitor Center: Open until 5 PM, shows movie about American Revolution - 200 N Great Rd, Lincoln, MA 01773</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=200%20N%20Great%20Rd%2C%20Lincoln%2C%20MA%2001773" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=200%20N%20Great%20Rd%2C%20Lincoln%2C%20MA%2001773" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.nps.gov/mima/index.htm" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <div class="relative">
+                    <p>Lunch: Toasted Flats (closes 5 PM) - 53 Chelsea St, Boston, MA 02128 or Santarpio’s Pizza, near airport, $$</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=53%20Chelsea%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=53%20Chelsea%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.toastedflats.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Lunch: Santarpio’s Pizza - 111 Chelsea St, Boston, MA 02128, $$</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=111%20Chelsea%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=111%20Chelsea%20St%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.santarpiospizza.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Lunch Alternative: Quincy Market/Faneuil Hall - 206 S Market St, Boston, MA 02109, fast casual, $$</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=206%20S%20Market%20St%2C%20Boston%2C%20MA%2002109" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=206%20S%20Market%20St%2C%20Boston%2C%20MA%2002109" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.quincy-market.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <p>Dinner: Kelly’s Roast Beef, 10 min walk from hotel, large portions, fish and chips, $</p>
+                <p>Beach Time: Revere Beach, across from hotel, free, seashells and crabs</p>
+            </div>
+        </div>
+        <div id="day-20250612" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 12, 2025 - Stowe, VT</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Drive from Boston, MA to Stowe, VT (2h 22m to Sharon, VT)</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Von Trapp Family Lodge: 700 Trapp Hill Rd, Stowe, VT 05672, Conf #47632SF031922</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=700%20Trapp%20Hill%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=700%20Trapp%20Hill%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.vontrappresort.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Optional last Boston attraction in the morning</p>
+                <div class="relative">
+                    <p>Joseph Smith Birthplace: 357 LDS Ln, South Royalton, VT (2h 15m from Boston), M-Sat 8 AM-5 PM, Sun 1 PM-5 PM</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=357%20LDS%20Ln%2C%20South%20Royalton%2C%20VT" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=357%20LDS%20Ln%2C%20South%20Royalton%2C%20VT" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Cold Hollow Cider Mill: 3600 Waterbury-Stowe Rd, Waterbury Center, VT (55 min from Joseph Smith Birthplace), 8 AM-6 PM daily (closed Thanksgiving & Christmas), old-fashioned cider press, apple cider donuts, cafe, vintage mill & gift shop</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=3600%20Waterbury-Stowe%20Rd%2C%20Waterbury%20Center%2C%20VT" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=3600%20Waterbury-Stowe%20Rd%2C%20Waterbury%20Center%2C%20VT" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <p>Lunch/Dinner: Cold Hollow Cider Mill, apple cider donuts, cafe</p>
+                <div class="relative">
+                    <p>Von Trapp Lodge Dining</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.vontrappresort.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="day-20250613" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 13, 2025 - Susquehanna, PA</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Drive from Stowe, VT to Susquehanna, PA (5h 30m, via Burlington)</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Airbnb: 126 Rockwell Rd, Susquehanna, PA, 1 night</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=126%20Rockwell%20Rd%2C%20Susquehanna%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=126%20Rockwell%20Rd%2C%20Susquehanna%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <div class="relative">
+                    <p>Priesthood Restoration Site: 27832 Route 171, Oakland Township, PA, 10 AM-7 PM (M-Sat), 1 PM-5 PM (Sun), visit if time permits</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=27832%20Route%20171%2C%20Oakland%20Township%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=27832%20Route%20171%2C%20Oakland%20Township%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/priesthood-restoration-site?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Fort William Henry Museum: Optional, cost not specified - 46 Canada St, Lake George, NY 12845</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=46%20Canada%20St%2C%20Lake%20George%2C%20NY%2012845" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=46%20Canada%20St%2C%20Lake%20George%2C%20NY%2012845" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.fwhmuseum.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="day-20250614" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 14, 2025 - Susquehanna, PA to Palmyra, NY</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Drive from Susquehanna, PA to Palmyra, NY (2h 30m)</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Airbnb: 7 Country Club Rd, East Rochester, NY 14445, 2 nights</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <div class="relative">
+                    <p>Priesthood Restoration Site & Joseph and Emma's Home: 27832 Route 171, Oakland Township, PA, 10 AM-7 PM, visit at 10 AM, includes visitor’s center, cemetery, Emma’s childhood home, Susquehanna River</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=27832%20Route%20171%2C%20Oakland%20Township%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=27832%20Route%20171%2C%20Oakland%20Township%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Watkins Glen State Park: 1009 N Franklin, Watkins Glen, NY, $8 parking, gorge trail with 19 waterfalls, en route to Palmyra</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=1009%20N%20Franklin%2C%20Watkins%20Glen%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=1009%20N%20Franklin%2C%20Watkins%20Glen%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://parks.ny.gov/parks/142/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Whitmer Farm: 1451 Aunkst Rd, Waterloo, NY, 10 AM-7 PM (M-Sat), 1 PM-5 PM (Sun, maybe 7 PM), where the church was organized</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=1451%20Aunkst%20Rd%2C%20Waterloo%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=1451%20Aunkst%20Rd%2C%20Waterloo%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/whitmer-farm-church-organization-site?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Grandin Printing Press: 217 E Main, Palmyra, NY, 10 AM-7 PM, where Book of Mormon was printed</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=217%20E%20Main%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=217%20E%20Main%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/grandin-printshop?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Martin and Lucy Harris Farm: 2905 Maple Ave, Palmyra, NY, 10 AM-7 PM, no interior tours, walk around outside</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=2905%20Maple%20Ave%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=2905%20Maple%20Ave%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/martin-harris-farm?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <div class="relative">
+                    <p>Sauder’s Amish Store: 2146 River Rd, Seneca Falls, NY, huge ice cream cones, Amish food, jams, jellies</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=2146%20River%20Rd%2C%20Seneca%20Falls%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=2146%20River%20Rd%2C%20Seneca%20Falls%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.saudersstore.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Mark’s Pizzeria: 1963 Kingdom Plaza, Waterloo, NY (near Sauder’s)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=1963%20Kingdom%20Plaza%2C%20Waterloo%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=1963%20Kingdom%20Plaza%2C%20Waterloo%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.markspizzeria.com/locations/seneca-falls" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="day-20250615" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 15, 2025 - Palmyra, NY</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Airbnb: 7 Country Club Rd, East Rochester, NY 14445</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <div class="relative">
+                    <p>Attend local Sacrament meeting, 11:10am Sacrament, 10:10am Sunday School, Mendon Ward, 460 Kreag Road, Pittsford, New York 14534</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=460%20Kreag%20Road%2C%20Pittsford%2C%20New%20York%2014534" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=460%20Kreag%20Road%2C%20Pittsford%2C%20New%20York%2014534" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Sacred Grove: 843 Stafford Rd, Palmyra, NY, 10 AM-7 PM (M-Sat), 1 PM-5 PM (Sun, maybe 7 PM), take bug spray, jackets, journals, many benches</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=843%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=843%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/sacred-grove?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Joseph Smith Family Farm: 843 Stafford Rd, Palmyra, NY, 10 AM-7 PM (M-Sat), 1 PM-5 PM (Sun, maybe 7 PM), includes log home, frame home, barn, Cooper Shop, Welcome Center, Palmyra Temple</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=843%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=843%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/smith-farm-home?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Hill Cumorah: 603 State Route 21, Palmyra, NY, 10 AM-7 PM (M-Sat), 1 PM-5 PM (Sun, maybe 7 PM), back route available, video of Hill Cumorah Pageant</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=603%20State%20Route%2021%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=603%20State%20Route%2021%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/hill-cumorah?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Martin and Lucy Harris Farm: 2905 Maple Ave, Palmyra, NY, 10 AM-7 PM, no interior tours, walk around outside (if not visited on June 14)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=2905%20Maple%20Ave%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=2905%20Maple%20Ave%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.churchofjesuschrist.org/learn/locations/martin-harris-farm?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <div class="relative">
+                    <p>The Chill & Grill: 616 E Main St, Palmyra, NY 14522, large ice cream cones, ask for 1/2 kiddie size for kids</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=616%20E%20Main%20St%2C%20Palmyra%2C%20NY%2014522" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=616%20E%20Main%20St%2C%20Palmyra%2C%20NY%2014522" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://www.facebook.com/ChillNGrillPal/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <p>Mark’s Pizzeria: Victor - 6499 State Route 96, Victor, NY 14564 or Geneva - 120 Seneca Street, Geneva, NY 14456</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=6499%20State%20Route%2096%2C%20Victor%2C%20NY%2014564" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=6499%20State%20Route%2096%2C%20Victor%2C%20NY%2014564" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="day-20250616" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 16, 2025 - Palmyra, NY to Kirtland, OH</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <div class="relative">
+                    <p>Drive from Palmyra, NY to Niagara Falls (2h) – 332 Prospect St, Niagara Falls, NY, then to Kirtland, OH (3-3.5h)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=332%20Prospect%20St%2C%20Niagara%20Falls%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=332%20Prospect%20St%2C%20Niagara%20Falls%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://parks.ny.gov/parks/46/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Monarch House at Midnight Rose Farm: 16980 Burrows Rd, Thompson, OH 44086</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=16980%20Burrows%20Rd%2C%20Thompson%2C%20OH%2044086" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=16980%20Burrows%20Rd%2C%20Thompson%2C%20OH%2044086" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                        <p><a href="https://midnightrosefarm.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Niagara Falls: Always open, $10-$20 parking, park on Goat Island if available, best views, shady walks, Maid of the Mist boat ride, skywalk, Visitor’s Center, museum</p>
+            </div>
+        </div>
+        <div id="day-20250617" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 17, 2025 - Kirtland, OH</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Monarch House at Midnight Rose Farm: Thompson, OH</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Thompson%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=Thompson%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Kirtland Temple: 10 AM-7 PM</p>
+                <p>Historic Kirtland: Newell K. Whitney Store (School of the Prophets), Whitney home, sawmill, potash factory, 10 AM-5 PM</p>
+                <p>Smith Family Home: Tours every 30 min, 10 AM-6 PM</p>
+                <p>Isaac Morley Farm: Mentor, OH, self-guided tour, ~15 min</p>
+                <div class="relative">
+                    <p>John & Elsa Johnson Farm: 6203 Pioneer Trail, Hiram, OH (1h south), 10 AM-7 PM</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=6203%20Pioneer%20Trail%2C%20Hiram%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=6203%20Pioneer%20Trail%2C%20Hiram%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+                <p>John Johnson Inn: Includes wood mill & ashery</p>
+                <p>Restored Joseph & Emma Home: No hours specified</p>
+                <p>Stone Quarry: No hours specified</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <p>Lunch: Kirtland Creamery, $</p>
+                <p>Chipotle: Erie, PA</p>
+            </div>
+        </div>
+        <div id="day-20250618" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 18, 2025 - Kirtland, OH</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <div class="relative">
+                    <p>Monarch House at Midnight Rose Farm: Thompson, OH</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Thompson%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=Thompson%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Kirtland Temple: 10 AM-7 PM</p>
+                <p>Historic Kirtland: Newell K. Whitney Store (School of the Prophets), Whitney home, sawmill, potash factory, 10 AM-5 PM</p>
+                <p>Smith Family Home: Tours every 30 min, 10 AM-6 PM</p>
+                <p>Isaac Morley Farm: Mentor, OH, self-guided tour, ~15 min</p>
+                <div class="relative">
+                    <p>John & Elsa Johnson Farm: 6203 Pioneer Trail, Hiram, OH (1h south), 10 AM-7 PM</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=6203%20Pioneer%20Trail%2C%20Hiram%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=6203%20Pioneer%20Trail%2C%20Hiram%2C%20OH" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+                <p>John Johnson Inn: Includes wood mill & ashery</p>
+                <p>Restored Joseph & Emma Home: No hours specified</p>
+                <p>Stone Quarry: No hours specified</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <p>Lunch: Kirtland Creamery, $</p>
+                <p>Chipotle: Erie, PA</p>
+            </div>
+        </div>
+        <div id="day-20250619" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 19, 2025 - Travel to Asheville, NC</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Flight 1: Delta #DL1500, Cleveland to Atlanta, 10:16 AM–12:03 PM (1h 47m)</p>
+                <p><a href="https://www.delta.com/flightstatus/search?flightNumber=1500&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1500/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                <p>Flight 2: Delta #DL1093, Atlanta to Asheville, 2:09 PM–3:12 PM (1h 3m)</p>
+                <p><a href="https://www.delta.com/flightstatus/search?flightNumber=1093&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1093/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                <div class="relative">
+                    <p>Rental Car: Budget, Douglas Int’l Airport, 5489 Josh Birmingham Pkwy, Charlotte, NC, pickup 1:00 PM, Conf #20687479US1, Costco #C461043825, Fastbreak E3M29U, minivan, $250.89 (was $276.13/$300.89)</p>
+                    <div class="absolute left-[-100px] top-0 hidden md:block">
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                        <p><a href="https://waze.com/ul?q=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <p>Stay: Cassidy’s, Mills River</p>
+            </div>
+        </div>
+        <div id="day-20250620" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 20, 2025 - Asheville, NC</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <p>Stay: Cassidy’s, Mills River</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Liam’s birthday, family activities</p>
+            </div>
+        </div>
+        <div id="day-20250621" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 21, 2025 - Asheville, NC</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Lodging</h3>
+                <p>Stay: Cassidy’s, Mills River</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
+                <p>Family time</p>
+            </div>
+        </div>
+        <div id="day-20250622" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">June 22, 2025 - Return to SLC</h2>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <p>Drive: Asheville to Charlotte, NC (2h, leave ~1:00 PM)</p>
+                <p>Flight: Delta #DL2070, Charlotte to SLC, 5:30 PM–8:01 PM (4h 31m, non-stop)</p>
+                <p><a href="https://www.delta.com/flightstatus/search?flightNumber=2070&date=20250622" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL2070/20250622" target="_blank" class="text-blue-600 hover:underline">Track

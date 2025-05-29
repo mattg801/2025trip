@@ -1,0 +1,187 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - Gollihur Family Eastern Adventure 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans" id="top">
+    <nav class="fixed top-0 left-0 right-0 bg-blue-600 text-white z-50">
+        <div class="container mx-auto p-4">
+            <h1 class="text-2xl font-bold text-center">Gollihur Family Eastern Adventure 2025</h1>
+            <ul class="flex justify-center space-x-6 mt-2">
+                <li><a href="index.html" class="hover:underline px-2 py-1 text-sm">Home</a></li>
+                <li><a href="reservations.html" class="hover:underline px-2 py-1 text-sm">Reservations</a></li>
+                <li><a href="photos.html" class="hover:underline px-2 py-1 text-sm">Photos</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-4 max-w-4xl mt-20">
+        <h2 class="text-2xl font-bold mb-4">Reservations</h2>
+        <div class="bg-white p-6 rounded-lg shadow mb-4">
+            <h3 class="text-lg font-medium mb-2">Flights</h3>
+            <p><strong>June 10, 2025 - Outbound to Boston, MA</strong></p>
+            <p>Flight 1: Delta #DL3172, SLC to Denver, 7:57 AM–9:24 AM (1h 30m)</p>
+            <p><a href="https://www.delta.com/flightstatus/search?flightNumber=3172&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL3172/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+            <p>Flight 2: Delta #DL499, Denver to Boston, 11:25 AM–5:35 PM (4h 10m)</p>
+            <p><a href="https://www.delta.com/flightstatus/search?flightNumber=499&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL499/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+            <p class="mt-4"><strong>June 19, 2025 - Travel to Asheville, NC</strong></p>
+            <p>Flight 1: Delta #DL1500, Cleveland to Atlanta, 10:16 AM–12:03 PM (1h 47m)</p>
+            <p><a href="https://www.delta.com/flightstatus/search?flightNumber=1500&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1500/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+            <p>Flight 2: Delta #DL1093, Atlanta to Asheville, 2:09 PM–3:12 PM (1h 3m)</p>
+            <p><a href="https://www.delta.com/flightstatus/search?flightNumber=1093&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1093/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+            <p class="mt-4"><strong>June 22, 2025 - Return to SLC</strong></p>
+            <p>Flight: Delta #DL2070, Charlotte to SLC, 5:30 PM–8:01 PM (4h 31m, non-stop)</p>
+            <p><a href="https://www.delta.com/flightstatus/search?flightNumber=2070&date=20250622" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL2070/20250622" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow mb-4">
+            <h3 class="text-lg font-medium mb-2">Rental Cars</h3>
+            <div class="relative">
+                <p><strong>June 10–19, 2025 - Boston, MA</strong></p>
+                <p>Alamo, Logan Int’l Airport, 15 Transportation Way, East Boston, MA, Conf #1481224049, Costco #C463564111, minivan, $1116.14/$1139.75, due at pickup</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=15%20Transportation%20Way%2C%20East%20Boston%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=15%20Transportation%20Way%2C%20East%20Boston%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.alamo.com" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 19–22, 2025 - Asheville, NC</strong></p>
+                <p>Budget, Douglas Int’l Airport, 5489 Josh Birmingham Pkwy, Charlotte, NC, pickup 1:00 PM, Conf #20687479US1, Costco #C461043825, Fastbreak E3M29U, minivan, $250.89 (was $276.13/$300.89)</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.budget.com" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow mb-4">
+            <h3 class="text-lg font-medium mb-2">Lodging</h3>
+            <div class="relative">
+                <p><strong>June 10–11, 2025 - Boston, MA</strong></p>
+                <p>Staybridge Suites Boston Burlington, 11 Old Concord Rd, Burlington, MA, 2-bedroom suite (1 king, 2 doubles), $504, due at hotel</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=11%20Old%20Concord%20Rd%2C%20Burlington%2C%20MA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.ihg.com/staybridge/hotels/us/en/burlington/bursb/hoteldetail" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 12, 2025 - Stowe, VT</strong></p>
+                <p>Von Trapp Family Lodge, 700 Trapp Hill Rd, Stowe, VT 05672, Conf #47632SF031922</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=700%20Trapp%20Hill%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=700%20Trapp%20Hill%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.vontrappresort.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 13, 2025 - Susquehanna, PA</strong></p>
+                <p>Airbnb, 126 Rockwell Rd, Susquehanna, PA, 1 night</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=126%20Rockwell%20Rd%2C%20Susquehanna%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=126%20Rockwell%20Rd%2C%20Susquehanna%2C%20PA" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.airbnb.com" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 14–15, 2025 - Palmyra, NY</strong></p>
+                <p>Airbnb, 7 Country Club Rd, East Rochester, NY 14445, 2 nights</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=7%20Country%20Club%20Rd%2C%20East%20Rochester%2C%20NY%2014445" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://www.airbnb.com" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 16–18, 2025 - Kirtland, OH</strong></p>
+                <p>Monarch House at Midnight Rose Farm, 16980 Burrows Rd, Thompson, OH 44086</p>
+                <div class="absolute left-[-100px] top-0 hidden md:block">
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=16980%20Burrows%20Rd%2C%20Thompson%2C%20OH%2044086" target="_blank" class="text-blue-600 hover:underline">Google</a></p>
+                    <p><a href="https://waze.com/ul?q=16980%20Burrows%20Rd%2C%20Thompson%2C%20OH%2044086" target="_blank" class="text-blue-600 hover:underline">Waze</a></p>
+                    <p><a href="https://midnightrosefarm.com/" target="_blank" class="text-blue-600 hover:underline">Info</a></p>
+                </div>
+            </div>
+            <div class="relative mt-4">
+                <p><strong>June 19–21, 2025 - Asheville, NC</strong></p>
+                <p>Cassidy’s, Mills River, NC</p>
+            </div>
+        </div>
+    </div>
+    <footer class="fixed bottom-0 left-0 right-0 bg-blue-600 text-white text-center p-2 z-50">
+        <a href="#top" class="hover:underline">Back to Top</a>
+    </footer>
+</body>
+</html>
