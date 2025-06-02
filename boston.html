@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gollihur Family Trip 2025 - Boston</title>
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS to handle fixed header offset for anchor links */
+        html {
+            /* Adjust this value based on the actual height of your fixed navigation bar.
+               You can inspect your <nav> element in browser developer tools to get its
+               computed height. A value around 120px is a good starting point for your current
+               Tailwind setup, but precise measurement is best. */
+            scroll-padding-top: 120px; /* Example value, adjust as needed */
+            scroll-behavior: smooth; /* Optional: for a smooth scrolling animation */
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans pt-48">
+<body class="bg-gray-100 font-sans">
     <script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
