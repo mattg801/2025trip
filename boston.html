@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +6,7 @@
     <title>Gollihur Family Trip 2025 - Boston</title>
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans pt-48">
     <script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
@@ -148,25 +109,28 @@
             </div>
         </div>
     </nav>
-        <br>
-    <div class="container mx-auto p-4 max-w-4xl mt-32">
-        <div class="mb-8">
-            </div>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <div class="mb-8 flex justify-center">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=15aSKoZEWMLw0tORkph0WDxZEwka0LDU&ehbc=2E312F&noprof=1" width="640" height="480" frameborder="0" allowfullscreen></iframe>
+        </div>
         <div id="day-20250610" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Tuesday, June 10, 2025 - Travel from SLC to Boston, MA</h2>
+            <h2 class="text-2xl font-bold mb-4">Tuesday, June 10, 2025 - Travel to Boston, MA</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
                 <h3 class="text-lg font-medium mb-2">Travel</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Flight 1</strong>: Delta #DL696, SLC to Atlanta, 12:25 AM–6:03 AM (3h 38m)
-                        <p><a href="https://www.delta.com/flightstatus/search?flightNumber=696&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL696/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                        <strong>Flight 1</strong>: Delta #DL3172, SLC to Denver, 7:57 AM–9:24 AM (1h 30m)
+                        <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline text-sm">[Track Live (Delta)]</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Track Live (FlightAware)]</a>
                     </li>
                     <li class="mb-4">
-                        <strong>Flight 2</strong>: Delta #DL2640, Atlanta to Boston, 8:30 AM–11:09 AM (2h 39m)
-                        <p><a href="https://www.delta.com/flightstatus/search?flightNumber=2640&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL2640/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
+                        <strong>Flight 2</strong>: Delta #DL499, Denver to Boston, 11:25 AM–5:35 PM (4h 10m)
+                        <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline text-sm">[Track Live (Delta)]</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Track Live (FlightAware)]</a>
                     </li>
                     <li class="mb-4">
-                        <strong>Rental Car Pick-up</strong>: Alamo, Boston Logan International Airport, 15 Transportation Way, Boston, MA 02128 <a href="https://www.google.com/maps/search/?api=1&query=15%20Transportation%20Way%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=15%20Transportation%20Way%2C%20Boston%2C%20MA%2002128" target="_blank" class="text-blue-600 hover:underline">Waze</a>, $1200, due at pick-up
+                        <strong>Rental Car Pickup</strong>: Alamo, Logan Int’l Airport, 15 Transportation Way, East Boston, MA
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056720" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=15+Transportation+Way,+East+Boston,+MA" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        Conf #1481224049, Costco #C463564111, minivan, $1116.14/$1139.75, due at pickup
                     </li>
                 </ul>
             </div>
@@ -174,7 +138,11 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Residence Inn by Marriott Boston Watertown</strong> <a href="https://www.marriott.com/en-us/hotels/bosrw-residence-inn-boston-watertown/overview/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 570 Arsenal St, Watertown, MA 02472 <a href="https://www.google.com/maps/search/?api=1&query=570%20Arsenal%20St%2C%20Watertown%2C%20MA%2002472" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=570%20Arsenal%20St%2C%20Watertown%2C%20MA%2002472" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2-bedroom suite, $600, due at hotel
+                        <strong>Hotel</strong>: Staybridge Suites Boston Burlington, 11 Old Concord Rd, Burlington, MA
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056721" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=11+Old+Concord+Rd,+Burlington,+MA" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        (23 min drive from Boston), 2-bedroom suite (1 king, 2 doubles), $504, due at hotel
+                        <a href="https://www.ihg.com/staybridge/hotels/us/en/burlington/bostb/hoteldetail?cm_mmc=GoogleMaps-_-SB-_-US-_-BOSTB" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
                     </li>
                 </ul>
             </div>
@@ -182,18 +150,120 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Freedom Trail</strong> <a href="https://www.thefreedomtrail.org/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 139 Tremont St, Boston, MA 02111 <a href="https://www.google.com/maps/search/?api=1&query=139%20Tremont%20St%2C%20Boston%2C%20MA%2002111" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=139%20Tremont%20St%2C%20Boston%2C%20MA%2002111" target="_blank" class="text-blue-600 hover:underline">Waze</a>, self-guided, free, 15 min from hotel
+                        <strong>Louisa May Alcott’s Orchard House</strong>: 399 Lexington Rd, Concord, MA
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056722" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=399+Lexington+Rd,+Concord,+MA" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        (20 min from hotel), $12 & $6.40 family rate
+                        <a href="https://louisamayalcott.org/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div id="day-20250611" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Wednesday, June 11, 2025 - Boston, MA to Stowe, VT</h2>
+            <h2 class="text-2xl font-bold mb-4">Wednesday, June 11, 2025: Boston, MA</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
-                <h3 class="text-lg font-medium mb-2">Travel</h3>
+                <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Drive</strong>: from Boston, MA to 1746 Mountain Rd, Stowe, VT 05672 <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%2005672" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 3hr 15min
+                        <strong>Hop on Hop off Trolley</strong>: 2-day ticket, $82
+                    </li>
+                    <li class="mb-4">
+                        <strong>Freedom Trail</strong>: $17.85, Walk into History Tour (free, some optional tours have fees), park at Boston Common, take T and yellow bus to Bunker Hill, work backwards, split into two mornings if hot, favorites: USS Constitution, Bunker Hill, Quincy Market, Old North Church
+                        <a href="https://www.thefreedomtrail.org/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Paul Revere's House</strong>: $6 - 19 N Square, Boston, MA 02113
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056723" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=19+N+Square,+Boston,+MA+02113" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.paulreverehouse.org/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Boston Tea Party Ships & Museum</strong>: Cost not specified - 306 Congress St, Boston, MA 02210
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056724" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=306+Congress+St,+Boston,+MA+02210" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.bostonteapartyship.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Boston Children's Museum</strong>: $26 - 308 Congress St, Boston, MA 02210
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056725" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=308+Congress+St,+Boston,+MA+02210" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://bostonchildrensmuseum.org/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>USS Constitution Museum</strong>: $15 - Building 22, Charlestown Navy Yard, Charlestown, MA 02129
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056726" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=Building+22,+Charlestown+Navy+Yard,+Charlestown,+MA+02129" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://ussconstitutionmuseum.org/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Cape Cod Canal Cruise</strong>: $21 - 184 Onset Ave, Onset, MA 02558
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056727" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=184+Onset+Ave,+Onset,+MA+02558" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://hylinecruises.com/cape-cod-canal-cruises/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Harvard</strong>: Massachusetts Hall, Cambridge, MA 02138 (Free)
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056728" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=Massachusetts+Hall,+Cambridge,+MA+02138" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.harvard.edu/visit/tours/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>MIT</strong>: 77 Massachusetts Ave, Cambridge, MA 02139 (MIT tour $22)
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056729" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=77+Massachusetts+Ave,+Cambridge,+MA+02139" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://web.mit.edu/visitmit/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Piers Park</strong>: Near airport, free, overlook boats and downtown Boston - 95 Marginal St, Boston, MA 02128
+                        <a href="https://www.google.com/maps/search/?api=1&query=10" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=95+Marginal+St,+Boston,+MA+02128" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://en.wikipedia.org/wiki/Piers_Park" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Mayflower II</strong>: Plymouth (1h away), might not visit - Water St, Plymouth, MA 02360
+                        <a href="https://www.google.com/maps/search/?api=1&query=11" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=Water+St,+Plymouth,+MA+02360" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://plimoth.org/plan-your-visit/explore-our-sites/mayflower-ii?" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Plymouth Rock</strong>: No cost specified - 79 Water St, Plymouth, MA 02360
+                        <a href="https://www.google.com/maps/search/?api=1&query=12" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=79+Water+St,+Plymouth,+MA+02360" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://seeplymouth.com/listing/plymouth-rock/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Lexington Green National Historic Site</strong>: No cost specified - 1625 Massachusetts Ave, Lexington, MA 02421
+                        <a href="https://www.google.com/maps/search/?api=1&query=13" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=1625+Massachusetts+Ave,+Lexington,+MA+02421" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://lexingtonma.gov/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Minute Man Visitor Center</strong>: Open until 5 PM, shows movie about American Revolution - 200 N Great Rd, Lincoln, MA 01773
+                        <a href="https://www.google.com/maps/search/?api=1&query=14" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=200+N+Great+Rd,+Lincoln,+MA+01773" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.nps.gov/mima/index.htm" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+                <h3 class="text-lg font-medium mb-2">Dining</h3>
+                <ul class="list-disc pl-5">
+                    <li class="mb-4">
+                        <strong>Lunch</strong>: Toasted Flats (closes 5 PM) - 53 Chelsea St, Boston, MA 02128
+                        <a href="https://www.google.com/maps/search/?api=1&query=15" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=53+Chelsea+St,+Boston,+MA+02128" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.toastedflats.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                        or Santarpio’s Pizza, near airport, $$ - 111 Chelsea St, Boston, MA 02128
+                        <a href="https://www.google.com/maps/search/?api=1&query=16" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=111+Chelsea+St,+Boston,+MA+02128" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.santarpiospizza.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Lunch Alternative</strong>: Quincy Market/Faneuil Hall - 206 S Market St, Boston, MA 02109
+                        <a href="https://www.google.com/maps/search/?api=1&query=17" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=206+S+Market+St,+Boston,+MA+02109" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        <a href="https://www.quincy-market.com/" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
+                        or Faneuil Hall, fast casual, $$
                     </li>
                 </ul>
             </div>
@@ -201,15 +271,11 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Residence Inn by Marriott Boston Watertown</strong> <a href="https://www.marriott.com/en-us/hotels/bosrw-residence-inn-boston-watertown/overview/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 570 Arsenal St, Watertown, MA 02472 <a href="https://www.google.com/maps/search/?api=1&query=570%20Arsenal%20St%2C%20Watertown%2C%20MA%2002472" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=570%20Arsenal%20St%2C%20Watertown%2C%20MA%2002472" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2-bedroom suite
-                    </li>
-                </ul>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow mb-4">
-                <h3 class="text-lg font-medium mb-2">Activities</h3>
-                <ul class="list-disc pl-5">
-                    <li class="mb-4">
-                        <strong>Boston Tea Party Ships & Museum</strong> <a href="https://www.bostonteapartyship.com/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 306 Congress St, Boston, MA 02210 <a href="https://www.google.com/maps/search/?api=1&query=306%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=306%20Congress%20St%2C%20Boston%2C%20MA%2002210" target="_blank" class="text-blue-600 hover:underline">Waze</a>, $30/adult, 20 min from hotel
+                        <strong>Staybridge Suites Boston Burlington</strong>: 11 Old Concord Rd, Burlington, MA
+                        <a href="https://www.google.com/maps/search/?api=1&query=1746%20Mountain%20Rd%2C%20Stowe%2C%20VT%20056721" target="_blank" class="text-blue-600 hover:underline text-sm">[Google Maps]</a>
+                        <a href="https://waze.com/ul?q=11+Old+Concord+Rd,+Burlington,+MA" target="_blank" class="text-blue-600 hover:underline text-sm">[Waze]</a>
+                        (23 min from Boston), 2-bedroom suite (1 king, 2 doubles)
+                        <a href="https://www.ihg.com/staybridge/hotels/us/en/burlington/bostb/hoteldetail?cm_mmc=GoogleMaps-_-SB-_-US-_-BOSTB" target="_blank" class="text-blue-600 hover:underline text-sm">[Info]</a>
                     </li>
                 </ul>
             </div>
