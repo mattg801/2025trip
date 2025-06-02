@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +6,7 @@
     <title>Gollihur Family Trip 2025 - Asheville</title>
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans pt-48">
     <script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
@@ -148,29 +109,31 @@
             </div>
         </div>
     </nav>
-        <br><br>
-    <div class="container mx-auto p-4 max-w-4xl mt-32">
-        <div class="mb-8">
-            </div>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <div class="mb-8 flex justify-center">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=19mnILS3e_7ErNS0qwsvQRZhn6kzqRhg&ehbc=2E312F&noprof=1" width="640" height="480" frameborder="0" allowfullscreen></iframe>
+        </div>
         <div id="day-20250619" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Thursday, June 19, 2025 - Kirtland, OH to Asheville, NC</h2>
+            <h2 class="text-2xl font-bold mb-4">Thursday, June 19, 2025 – Kirtland, OH to Asheville, NC</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
                 <h3 class="text-lg font-medium mb-2">Travel</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Drive to Airport</strong>: from Monarch House at Midnight Rose Farm, 16980 Burrows Rd, Thompson, OH 44086 to Cleveland Hopkins International Airport, 19601 Maplewood Ave, Cleveland, OH 44135 <a href="https://www.google.com/maps/search/?api=1&query=19601%20Maplewood%20Ave%2C%20Cleveland%2C%20OH%2044135" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=19601%20Maplewood%20Ave%2C%20Cleveland%2C%20OH%2044135" target="_blank" class="text-blue-600 hover:underline">Waze</a>, ~45 min
+                        <strong>Rental Car Return</strong>: Alamo - 19601 Maplewood Ave, Cleveland, OH 44135 [cite: 19]
+                        <a href="https://www.alamo.com/en/car-rental-locations/us/oh/cleveland-hopkins-international-airport-396a.html" target="_blank" class="text-blue-600 hover:underline">Info</a> [cite: 19]
                     </li>
                     <li class="mb-4">
-                        <strong>Rental Car Return</strong>: Alamo <a href="https://www.alamo.com/en/car-rental-locations/us/oh/cleveland-hopkins-international-airport-396a.html" target="_blank" class="text-blue-600 hover:underline">Info</a>: 19601 Maplewood Ave, Cleveland, OH 44135 <a href="https://www.google.com/maps/search/?api=1&query=19601%20Maplewood%20Ave%2C%20Cleveland%2C%20OH%2044135" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=19601%20Maplewood%20Ave%2C%20Cleveland%2C%20OH%2044135" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        <strong>Flight 1</strong>: Delta #DL1500, Cleveland to Atlanta, 10:16 AM–12:03 PM (1h 47m) [cite: 20]
+                        <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a> [cite: 20]
                     </li>
                     <li class="mb-4">
-                        <strong>Flight 1</strong>: Delta #DL1500, Cleveland (CLE) to Atlanta (ATL), 10:16 AM–12:03 PM, 1 hr 47 min <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a>
+                        <strong>Flight 2</strong>: Delta #DL1093, Atlanta to Asheville, 2:09 PM–3:12 PM (1h 3m) [cite: 21]
+                        <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a> [cite: 21]
                     </li>
                     <li class="mb-4">
-                        <strong>Flight 2</strong>: Delta #DL1093, Atlanta (ATL) to Asheville (AVL), 2:09 PM–3:12 PM, 1 hr 3 min <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a>
-                    </li>
-                    <li class="mb-4">
-                        <strong>Rental Car Pickup</strong>: Budget <a href="https://www.budget.com/en/locations/us/nc/fletcher/avl?utm_source=google&utm_medium=gbp&utm_campaign=budget_gbp" target="_blank" class="text-blue-600 hover:underline">Info</a>: 61 Terminal Dr Suite 14, Fletcher, NC 28732 <a href="https://www.google.com/maps/search/?api=1&query=61%20Terminal%20Dr%20Suite%2014%2C%20Fletcher%2C%20NC%2028732" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=61%20Terminal%20Dr%20Suite%2014%2C%20Fletcher%2C%20NC%2028732" target="_blank" class="text-blue-600 hover:underline">Waze</a>, pickup 1:00 PM, Conf #20687479US1, Costco #C461043825, Fastbreak E3M29U, minivan, $250.89 (was $276.13/$300.89)
+                        <strong>Rental Car Pickup</strong>: Budget, Asheville Regional Airport, 61 Terminal Dr Suite 14, Fletcher, NC 28732 [cite: 21]
+                        pickup 1:00 PM, Conf #20687479US1, Costco #C461043825, Fastbreak E3M29U, minivan, $250.89 (was $276.13/$300.89) [cite: 21]
+                        <a href="https://www.budget.com/en/locations/us/nc/fletcher/avl?utm_source=google&utm_medium=gbp&utm_campaign=budget_gbp" target="_blank" class="text-blue-600 hover:underline">Info</a> [cite: 21]
                     </li>
                 </ul>
             </div>
@@ -178,21 +141,21 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC <a href="https://www.google.com/maps/search/?api=1&query=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC [cite: 21]
                     </li>
                 </ul>
             </div>
         </div>
         <div id="day-20250620" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Friday, June 20, 2025 - Asheville, NC</h2>
+            <h2 class="text-2xl font-bold mb-4">Friday, June 20, 2025: Asheville, NC</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC <a href="https://www.google.com/maps/search/?api=1&query=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Alternate Lodging</strong>: 60 Squires Lane, Candler, NC <a href="https://www.google.com/maps/search/?api=1&query=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 32 min drive from Cassidy’s
+                        60 Squires Lane, Candler, NC (32 min drive from Cassidy’s) [cite: 22]
                     </li>
                 </ul>
             </div>
@@ -200,21 +163,21 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        Liam’s birthday, family activities
+                        Liam’s birthday, family activities [cite: 22]
                     </li>
                 </ul>
             </div>
         </div>
         <div id="day-20250621" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Saturday, June 21, 2025 - Asheville, NC</h2>
+            <h2 class="text-2xl font-bold mb-4">Saturday, June 21, 2025: Asheville, NC</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC <a href="https://www.google.com/maps/search/?api=1&query=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Alternate Lodging</strong>: 60 Squires Lane, Candler, NC <a href="https://www.google.com/maps/search/?api=1&query=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 32 min drive from Cassidy’s
+                        60 Squires Lane, Candler, NC [cite: 22]
                     </li>
                 </ul>
             </div>
@@ -222,21 +185,21 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        Family time
+                        Family time [cite: 22]
                     </li>
                 </ul>
             </div>
         </div>
         <div id="day-20250622" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Sunday, June 22, 2025 - Asheville, NC to Salt Lake City, UT</h2>
+            <h2 class="text-2xl font-bold mb-4">Sunday, June 22, 2025 – Asheville, NC to Salt Lake City, UT</h2>
             <div class="bg-white p-6 rounded-lg shadow mb-4">
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC <a href="https://www.google.com/maps/search/?api=1&query=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        <strong>Stay with Cassidy</strong>: 323 Samuel Drive, Mills River, NC [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Alternate Lodging</strong>: 60 Squires Lane, Candler, NC <a href="https://www.google.com/maps/search/?api=1&query=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=60%20Squires%20Lane%2C%20Candler%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 32 min drive from Cassidy’s
+                        60 Squires Lane, Candler, NC [cite: 22]
                     </li>
                 </ul>
             </div>
@@ -244,13 +207,13 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Church (Option 1)</strong>: Brevard Branch, 10 AM Sacrament, 980 Neely Rd, Brevard, NC <a href="https://www.google.com/maps/search/?api=1&query=980%20Neely%20Rd%2C%20Brevard%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=980%20Neely%20Rd%2C%20Brevard%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 1 hr 6 min drive south from Candler
+                        <strong>Church</strong>: Attend church with Cassidy & Liam – Brevard Branch, 10am Sacrament, 980 Neely Rd, Brevard, NC (1hr 6min drive south from Candler) [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Church (Option 2)</strong>: Weaverville Ward (Candler), 10 AM Sacrament Meeting, 91 Monticello Rd, Weaverville, NC 28787 <a href="https://www.google.com/maps/search/?api=1&query=91%20Monticello%20Rd%2C%20Weaverville%2C%20NC%2028787" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=91%20Monticello%20Rd%2C%20Weaverville%2C%20NC%2028787" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 24 min drive north from Candler
+                        Weaverville Ward (Candler), 10am Sacrament Meeting, 91 Monticello Rd, Weaverville, NC 28787 (24 min drive north from Candler – opposite direction from Mills River) [cite: 22]
                     </li>
                     <li class="mb-4">
-                        Return to Cassidy’s: 323 Samuel Drive, Mills River, NC <a href="https://www.google.com/maps/search/?api=1&query=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=323%20Samuel%20Drive%2C%20Mills%20River%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>
+                        Return to Cassidy’s: 323 Samuel Drive, Mills River, NC [cite: 22]
                     </li>
                 </ul>
             </div>
@@ -258,13 +221,16 @@
                 <h3 class="text-lg font-medium mb-2">Travel</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Drive</strong>: from 323 Samuel Drive, Mills River, NC to Charlotte Douglas International Airport, 5489 Josh Birmingham Pkwy, Charlotte, NC <a href="https://www.google.com/maps/search/?api=1&query=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 1 hr 52 min, leave ~1:00 PM
+                        <strong>Drive</strong>: from Mills River, NC to Charlotte, NC (1hr 52min drive from Cassidy’s, leave ~1:00 PM) [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Rental Car Return</strong>: Budget <a href="https://www.budget.com/en/locations/us/nc/charlotte/clt" target="_blank" class="text-blue-600 hover:underline">Info</a>: 5489 Josh Birmingham Pkwy, Charlotte, NC <a href="https://www.google.com/maps/search/?api=1&query=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=5489%20Josh%20Birmingham%20Pkwy%2C%20Charlotte%2C%20NC" target="_blank" class="text-blue-600 hover:underline">Waze</a>, return 4:00 PM, Conf #20687479US1
+                        <strong>Rental Car Return</strong>: Budget, Douglas Int’l Airport, 5489 Josh Birmingham Pkwy, Charlotte, NC [cite: 22]
+                        return 4:00 PM, Conf #20687479US1 [cite: 22]
+                        <a href="https://www.budget.com/en/locations/us/nc/charlotte/clt" target="_blank" class="text-blue-600 hover:underline">Info</a> [cite: 22]
                     </li>
                     <li class="mb-4">
-                        <strong>Flight</strong>: Delta #DL2070, Charlotte (CLT) to Salt Lake City (SLC), 5:30 PM–8:01 PM, 4 hr 31 min, non-stop <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a>
+                        <strong>Flight</strong>: Delta #DL2070, Charlotte to SLC, 5:30 PM–8:01 PM (4h 31m, non-stop) [cite: 23]
+                        <a href="https://www.delta.com/flightstatus" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://www.flightaware.com/" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a> [cite: 23]
                     </li>
                 </ul>
             </div>
