@@ -1,50 +1,10 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gollihur Family Trip 2025 - Palmyra</title>
-    <link href="[https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css](https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css)" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 font-sans">
     <script type="text/javascript">
@@ -158,7 +118,7 @@
                 <h3 class="text-lg font-medium mb-2">Travel</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Drive</strong>: from Susquehanna, PA to 1461 NY-96, Phelps, NY 14532 <a href="[https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 3hr 15min
+                        <strong>Drive</strong>: from Susquehanna, PA to 1461 NY-96, Phelps, NY 14532 <a href="https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 3hr 15min
                     </li>
                 </ul>
             </div>
@@ -166,7 +126,7 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="[https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/](https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="[https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed), $377, due at hotel
+                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed), $377, due at hotel
                     </li>
                 </ul>
             </div>
@@ -174,7 +134,7 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Palmyra Historic Sites</strong> <a href="[https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng](https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="[https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM, 25 min from hotel
+                        <strong>Palmyra Historic Sites</strong> <a href="https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM, 25 min from hotel
                     </li>
                 </ul>
             </div>
@@ -185,7 +145,7 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="[https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/](https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="[https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed)
+                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed)
                     </li>
                 </ul>
             </div>
@@ -193,10 +153,10 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Palmyra Historic Sites</strong> <a href="[https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng](https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="[https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM
+                        <strong>Palmyra Historic Sites</strong> <a href="https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM
                     </li>
                     <li class="mb-4">
-                        <strong>Erie Canal Lock 29</strong> <a href="[https://www.eriecanal.org/locks.html](https://www.eriecanal.org/locks.html)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 2041 NY-31, Macedon, NY 14502 <a href="[https://www.google.com/maps/search/?api=1&query=2041%20NY-31%2C%20Macedon%2C%20NY%2014502](https://www.google.com/maps/search/?api=1&query=2041%20NY-31%2C%20Macedon%2C%20NY%2014502)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=2041%20NY-31%2C%20Macedon%2C%20NY%2014502](https://waze.com/ul?q=2041%20NY-31%2C%20Macedon%2C%20NY%2014502)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, free, 15 min from hotel
+                        <strong>Erie Canal Lock 29</strong> <a href="https://www.eriecanal.org/locks.html" target="_blank" class="text-blue-600 hover:underline">Info</a>: 2041 NY-31, Macedon, NY 14502 <a href="https://www.google.com/maps/search/?api=1&query=2041%20NY-31%2C%20Macedon%2C%20NY%2014502" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=2041%20NY-31%2C%20Macedon%2C%20NY%2014502" target="_blank" class="text-blue-600 hover:underline">Waze</a>, free, 15 min from hotel
                     </li>
                 </ul>
             </div>
@@ -207,7 +167,7 @@
                 <h3 class="text-lg font-medium mb-2">Travel</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Drive</strong>: from Palmyra, NY to 7800 Granger Rd, Kirtland, OH 44094 <a href="[https://www.google.com/maps/search/?api=1&query=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094](https://www.google.com/maps/search/?api=1&query=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094](https://waze.com/ul?q=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 3hr 45min
+                        <strong>Drive</strong>: from Palmyra, NY to 7800 Granger Rd, Kirtland, OH 44094 <a href="https://www.google.com/maps/search/?api=1&query=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=7800%20Granger%20Rd%2C%20Kirtland%2C%20OH%2044094" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 3hr 45min
                     </li>
                 </ul>
             </div>
@@ -215,7 +175,7 @@
                 <h3 class="text-lg font-medium mb-2">Lodging</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="[https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/](https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="[https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532](https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed)
+                        <strong>Hampton Inn & Suites Rochester/Victor</strong> <a href="https://www.hilton.com/en/hotels/rocvihx-hampton-suites-rochester-victor/" target="_blank" class="text-blue-600 hover:underline">Info</a>: 1461 NY-96, Phelps, NY 14532 <a href="https://www.google.com/maps/search/?api=1&query=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=1461%20NY-96%2C%20Phelps%2C%20NY%2014532" target="_blank" class="text-blue-600 hover:underline">Waze</a>, 2 rooms (2 queens, 1 king with sofa bed)
                     </li>
                 </ul>
             </div>
@@ -223,7 +183,7 @@
                 <h3 class="text-lg font-medium mb-2">Activities</h3>
                 <ul class="list-disc pl-5">
                     <li class="mb-4">
-                        <strong>Palmyra Historic Sites</strong> <a href="[https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng](https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng)" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="[https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="[https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY](https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY)" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM
+                        <strong>Palmyra Historic Sites</strong> <a href="https://www.churchofjesuschrist.org/learn/historic-sites/new-york/palmyra?lang=eng" target="_blank" class="text-blue-600 hover:underline">Info</a>: 140-166 Stafford Rd, Palmyra, NY <a href="https://www.google.com/maps/search/?api=1&query=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Google</a> | <a href="https://waze.com/ul?q=140-166%20Stafford%20Rd%2C%20Palmyra%2C%20NY" target="_blank" class="text-blue-600 hover:underline">Waze</a>, M-Sat 9 AM-7 PM, Sun 12 PM-7 PM
                     </li>
                 </ul>
             </div>
